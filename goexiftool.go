@@ -44,22 +44,20 @@ func (m *MediaFile) AnalyzeMetadata(args []string) (err error) {
 		return
 	}
 
-	scanner := bufio.NewScanner(cmdReader)
-	go func() {
-		for scanner.Scan() {
-			res := strings.SplitN(scanner.Text(), ":", 2)
-			if len(res) > 1 {
-				key := strings.TrimSpace(res[0])
-				value := strings.TrimSpace(res[1])
-				m.Info[key] = value
-			}
-		}
-	}()
-
 	err = cmd.Start()
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "Error starting Cmd", err)
 		return
+	}
+
+	scanner := bufio.NewScanner(cmdReader)
+	for scanner.Scan() {
+		res := strings.SplitN(scanner.Text(), ":", 2)
+		if len(res) > 1 {
+			key := strings.TrimSpace(res[0])
+			value := strings.TrimSpace(res[1])
+			m.Info[key] = value
+		}
 	}
 
 	err = cmd.Wait()
