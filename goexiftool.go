@@ -102,8 +102,13 @@ func (m *MediaFile) GetCamera() (camera string, err error) {
 func (m *MediaFile) GetDate() (date time.Time, err error) {
 	dateString, ok := m.Info["Date/Time Original"]
 	if !ok {
-		err = errors.New("Unknown exiftool value : Date/Time Original")
+		dateString, ok = m.Info["Create Date"]
+		if !ok {
+			err = errors.New("Couldn't find Date/Time Original or Create Date exif data")
+			return
+		}
 	}
+
 	date, err = time.Parse("2006:01:02 15:04:05", dateString)
 	if err != nil {
 		// some files have better precision...
