@@ -61,10 +61,6 @@ func (m *MediaFile) AnalyzeMetadata(args []string) (err error) {
 	}
 
 	err = cmd.Wait()
-	if err != nil {
-		fmt.Fprintln(os.Stderr, "Error waiting for Cmd", err)
-		return
-	}
 	return
 }
 
