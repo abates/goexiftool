@@ -12,6 +12,8 @@ import (
 	"time"
 )
 
+var ExifTool = "exiftool"
+
 // MediaFile holds all the metadata provided by exiftool in a map
 type MediaFile struct {
 	Filename string
@@ -29,7 +31,7 @@ func (m *MediaFile) String() string {
 
 // AnalyzeMetadata calls exiftool on the file and parses its output.
 func (m *MediaFile) AnalyzeMetadata(args []string) (err error) {
-	cmdName, err := exec.LookPath("exiftool")
+	cmdName, err := exec.LookPath(ExifTool)
 	if err != nil {
 		return errors.New("exiftool is not installed")
 	}
@@ -38,6 +40,7 @@ func (m *MediaFile) AnalyzeMetadata(args []string) (err error) {
 		cmdArgs = append(args, m.Filename)
 	}
 	cmd := exec.Command(cmdName, cmdArgs...)
+
 	cmdReader, err := cmd.StdoutPipe()
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "Error creating StdoutPipe for Cmd", err)
