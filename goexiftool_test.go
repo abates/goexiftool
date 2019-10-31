@@ -47,7 +47,7 @@ var testImages = []struct {
 	{
 		"test_files/2015-12-21-13h31m44s_A7RII.35mm1.4_02725.jpg",
 		nil,
-		"Sigma 35mm f/1.4 DG HSM",
+		"Sigma 35mm f/1.4 DG HSM or Sigma 35mm f/1.5 FF High-Speed Prime | 017",
 		"ILCE-7RM2",
 		"Off, Did not fire",
 		time.Date(2015, time.December, 21, 13, 31, 44, 0, time.UTC),
@@ -74,7 +74,7 @@ var testImages = []struct {
 	{
 		"test_files/2008-08-05-18h26m36s_40D.70-200mm4L-IS_4296.jpg",
 		nil,
-		"Canon EF 70-200mm f/4L IS",
+		"Canon EF 70-200mm f/4L IS USM",
 		"Canon EOS 40D",
 		"Off, Did not fire",
 		time.Date(2008, time.August, 05, 18, 26, 36, 290000000, time.UTC),
