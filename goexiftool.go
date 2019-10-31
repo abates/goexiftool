@@ -45,8 +45,7 @@ func (m *MediaFile) AnalyzeMetadata(args []string) (err error) {
 		}
 		cmd = exec.Command(cmdName, cmdArgs...)
 	} else {
-		*cmd = *ExifTool
-		cmd.Args = append(cmd.Args, cmdArgs...)
+		cmd = exec.Command(ExifTool.Args[0], append(ExifTool.Args, cmdArgs...)...)
 	}
 
 	cmdReader, err := cmd.StdoutPipe()
